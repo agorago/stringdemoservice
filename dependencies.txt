@@ -1,0 +1,2 @@
+bplus,../bplus,gitlab.intelligentb.com/devops/bplus,false
+stringdemoapi,../stringdemoapi,gitlab.intelligentb.com/examples/stringdemo/stringdemoapi,false
