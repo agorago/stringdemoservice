@@ -1,4 +1,3 @@
-
 // Package classification stringdemo
 //
 //  StringDemoService - the interface that is going to be implemented by the string demo service This has methods to illustrate features of the BPlus framework

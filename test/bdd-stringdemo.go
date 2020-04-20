@@ -5,11 +5,11 @@ import (
 	"fmt"
 
 	"github.com/DATA-DOG/godog"
-	_ "gitlab.intelligentb.com/examples/stringdemo/stringdemoservice" // invoke init() on hello functions
-	"gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/api"
-	"gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/proxy"
 	bplusc "gitlab.intelligentb.com/devops/bplus/context"
 	bpluse "gitlab.intelligentb.com/devops/bplus/err"
+	"gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/api"
+	"gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/proxy"
+	_ "gitlab.intelligentb.com/examples/stringdemo/stringdemoservice" // invoke init() on hello functions
 )
 
 type stringdemoTestStruct struct {
@@ -64,11 +64,11 @@ func (sts *stringdemoTestStruct) iInvokeUppercaseWithoutSecureToken(arg string) 
 func (sts *stringdemoTestStruct) iMustGetBackAnErrorWithHTTPErrorCode(arg1 int) error {
 	err, ok := sts.Err.(bpluse.BPlusError)
 	if !ok {
-		return fmt.Errorf("Error is not of type BplusError. it is %#v\n",err)
+		return fmt.Errorf("Error is not of type BplusError. it is %#v\n", err)
 	}
 	if arg1 != err.HTTPErrorCode {
 		return fmt.Errorf("error codes dont match. Expected = %d.Actual = %d. Full error is %#v",
-			arg1, err.HTTPErrorCode,err)
+			arg1, err.HTTPErrorCode, err)
 	}
 	return nil
 }

@@ -11,9 +11,9 @@ import (
 func init() {
 	var sd = apiregister.GetServiceDescriptor()
 	sd.ServiceToInvoke = service.MakeStringdemoService()
-	for i := range sd.Operations{
-		if sd.Operations[i].Name == "Uppercase"{
-			sd.Operations[i].OpMiddleware = []bplus.Middleware{service.Secure,}
+	for i := range sd.Operations {
+		if sd.Operations[i].Name == "Uppercase" {
+			sd.Operations[i].OpMiddleware = []bplus.Middleware{service.Secure}
 		}
 	}
 	bplus.RegisterService("stringdemo", sd)
