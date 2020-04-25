@@ -11,7 +11,7 @@ export
 ## build: Build the executable
 .PHONY: build
 build: create-bin
-	go build -o bin/main internal/cmd/main/main.go
+	go build -ldflags "-X 'main.Version=$(VERSION)'" -o bin/main internal/cmd/main/main.go
 
 ## generate-error-codes: Generates error codes from enum constants (using iota)
 .PHONY: generate-error-codes
@@ -27,6 +27,11 @@ create-bin:
 .PHONY: run
 run: generate-error-codes copy-bundles
 	go run internal/cmd/main/main.go
+
+## run-main: Run the executable after building it
+.PHONY: run-main
+run-main: generate-error-codes copy-bundles build
+	bin/main
 
 ## copy-bundles: Copies the bundle files from individual modules to a common CONFIG folder
 .PHONY: copy-bundles

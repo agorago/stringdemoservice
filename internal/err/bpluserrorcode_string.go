@@ -13,9 +13,9 @@ func _() {
 	_ = x[CannotCastResponse-200002]
 }
 
-const _BPlusErrorCode_name = "stringdemo.errors.CannotInvokeOperationstringdemo.errors.SecurityExceptionstringdemo.errors.CannotCastResponse"
+const _BPlusErrorCode_name = "stringdemoservice.errors.CannotInvokeOperationstringdemoservice.errors.SecurityExceptionstringdemoservice.errors.CannotCastResponse"
 
-var _BPlusErrorCode_index = [...]uint8{0, 39, 74, 110}
+var _BPlusErrorCode_index = [...]uint8{0, 46, 88, 131}
 
 func (i BPlusErrorCode) String() string {
 	i -= 200000
