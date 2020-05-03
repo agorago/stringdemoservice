@@ -5,11 +5,11 @@ import (
 	"fmt"
 
 	"github.com/DATA-DOG/godog"
-	bplusc "gitlab.intelligentb.com/devops/bplus/context"
-	bpluse "gitlab.intelligentb.com/devops/bplus/err"
-	"gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/api"
-	"gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/proxy"
-	_ "gitlab.intelligentb.com/examples/stringdemo/stringdemoservice" // invoke init() on hello functions
+	"github.com/agorago/stringdemoapi/api"
+	"github.com/agorago/stringdemoapi/proxy"
+	_ "github.com/agorago/stringdemoservice" // invoke init() on hello functions
+	bplusc "github.com/agorago/wego/context"
+	bpluse "github.com/agorago/wego/err"
 )
 
 type stringdemoTestStruct struct {

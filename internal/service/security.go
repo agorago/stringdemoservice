@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	bplusc "gitlab.intelligentb.com/devops/bplus/context"
-	bplus "gitlab.intelligentb.com/devops/bplus/fw"
-	e "gitlab.intelligentb.com/examples/stringdemo/stringdemoservice/internal/err"
+	bplusc "github.com/agorago/wego/context"
+	bplus "github.com/agorago/wego/fw"
+	e "github.com/agorago/stringdemoservice/internal/err"
 )
 
 // Secure - a middleware for security

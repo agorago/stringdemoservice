@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	api "gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/api"
+	api "github.com/agorago/stringdemoapi/api"
 	"strings"
 )
 

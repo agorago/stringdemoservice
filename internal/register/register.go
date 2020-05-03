@@ -1,11 +1,11 @@
 package register
 
 import (
-	_ "gitlab.intelligentb.com/devops/bplus" // initialize BPlus first to make sure
-	bplus "gitlab.intelligentb.com/devops/bplus/fw"
+	_ "github.com/agorago/wego" // initialize BPlus first to make sure
+	bplus "github.com/agorago/wego/fw"
 	// that all BPLUS modules are loaded
-	apiregister "gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/register"
-	service "gitlab.intelligentb.com/examples/stringdemo/stringdemoservice/internal/service"
+	apiregister "github.com/agorago/stringdemoapi/register"
+	service "github.com/agorago/stringdemoservice/internal/service"
 )
 
 func init() {

@@ -1,7 +1,7 @@
 package docs
 
 import (
-	"gitlab.intelligentb.com/examples/stringdemo/stringdemoapi/api"
+	"github.com/agorago/stringdemoapi/api"
 )
 
 // swagger:route POST /stringdemo/uppercase Uppercase-tag UppercaseRequestWrapper
