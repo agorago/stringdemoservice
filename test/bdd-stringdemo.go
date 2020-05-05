@@ -6,8 +6,6 @@ import (
 
 	"github.com/DATA-DOG/godog"
 	"github.com/agorago/stringdemoapi/api"
-	"github.com/agorago/stringdemoapi/proxy"
-	_ "github.com/agorago/stringdemoservice" // invoke init() on hello functions
 	bplusc "github.com/agorago/wego/context"
 	bpluse "github.com/agorago/wego/err"
 )
@@ -33,7 +31,6 @@ func FeatureContext(s *godog.Suite) {
 }
 
 var hts = &stringdemoTestStruct{}
-var stringdemoProxy = proxy.Stringdemo{}
 
 func (sts *stringdemoTestStruct) iInvokeUppercaseWithSecureToken(arg string, token string) error {
 	uc := api.UpperCaseRequest{S: arg}

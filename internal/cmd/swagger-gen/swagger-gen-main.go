@@ -2,9 +2,10 @@ package main
 
 import (
 	"github.com/agorago/wego/cmd"
-	_ "github.com/agorago/stringdemoservice"
+	"github.com/agorago/wego/fw"
 )
 
 func main() {
-	cmd.SwaggerMain()
+	rs := fw.MakeRegistrationService()
+	cmd.SwaggerMain(rs)
 }
