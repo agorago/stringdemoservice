@@ -3,6 +3,9 @@ package test
 import (
 	"context"
 	"fmt"
+	"github.com/agorago/stringdemoapi"
+	"github.com/agorago/wego/fw"
+	"log"
 
 	"github.com/DATA-DOG/godog"
 	"github.com/agorago/stringdemoapi/api"
@@ -17,9 +20,15 @@ type stringdemoTestStruct struct {
 	Err error
 }
 
+var stringdemoProxy api.StringDemoService
 // FeatureContext - the GODOG feature context that defines the step definitions for the BDD tests
 // that need to be executed for hello service
-func FeatureContext(s *godog.Suite) {
+func FeatureContext(commandCatalog fw.CommandCatalog,s *godog.Suite) {
+	var err error
+	stringdemoProxy,err = stringdemoapi.GetStringDemoProxy(commandCatalog)
+	if err != nil {
+		log.Fatalf("Test application has an error. Error = %v\n",err)
+	}
 	s.Step(`^I invoke Uppercase with "([^"]*)" and a secure token with value "([^"]*)"$`, hts.iInvokeUppercaseWithSecureToken)
 	s.Step(`^I must get back an upper case return value of "([^"]*)"$`, hts.iMustGetBackAnUpperCaseReturnValueOf)
 	s.Step(`^I invoke Count with "([^"]*)"$`, hts.iInvokeCountWith)
