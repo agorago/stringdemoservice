@@ -68,7 +68,7 @@ func (sts *stringdemoTestStruct) iInvokeUppercaseWithoutSecureToken(arg string) 
 }
 
 func (sts *stringdemoTestStruct) iMustGetBackAnErrorWithHTTPErrorCode(arg1 int) error {
-	err, ok := sts.Err.(bpluse.BPlusError)
+	err, ok := sts.Err.(bpluse.WeGOError)
 	if !ok {
 		return fmt.Errorf("Error is not of type BplusError. it is %#v\n", err)
 	}
