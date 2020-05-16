@@ -7,21 +7,20 @@
 include .env
 export
 .DEFAULT_GOAL := all
-
-## build: Build the executable
-.PHONY: build
-build: create-bin
-	go build -ldflags "-X 'main.Version=$(VERSION)'" -o bin/main internal/cmd/main/main.go
-
-## generate-error-codes: Generates error codes from enum constants (using iota)
-.PHONY: generate-error-codes
-generate-error-codes:
-	internal/scripts/gen-error.sh
+# Pre-requisites for running this Makefile
+# Make sure that go is installed
+# Make sure that go get golang.org/x/tools/cmd/stringer is executed to install the stringer tool
+# For docker related builds make sure that docker is installed
 
 ## create-bin: create the bin directory if it doesnt exist
 .PHONY: create-bin
 create-bin:
 	if [ ! -d bin ]; then mkdir bin; fi
+
+## build: Build the executable
+.PHONY: build
+build: create-bin
+	go build -ldflags "-X 'main.Version=$(VERSION)'" -o bin/main internal/cmd/main/main.go
 
 ## run: Run the executable after building it
 .PHONY: run
@@ -32,6 +31,21 @@ run: generate-error-codes copy-bundles
 .PHONY: run-main
 run-main: generate-error-codes copy-bundles build
 	bin/main
+
+## docker-build: Builds a container  using docker
+.PHONY: docker-build
+docker-build:
+	docker build -t sample -f internal/deploy/Dockerfile ..
+
+## docker-run: RUNS the docker container built using docker-build
+.PHONY: docker-run
+docker-run:
+	docker run -p 8080:8080 sample
+
+## generate-error-codes: Generates error codes from enum constants (using iota)
+.PHONY: generate-error-codes
+generate-error-codes:
+	internal/scripts/gen-error.sh
 
 ## copy-bundles: Copies the bundle files from individual modules to a common CONFIG folder
 .PHONY: copy-bundles
