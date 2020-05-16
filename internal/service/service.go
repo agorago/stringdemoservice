@@ -12,8 +12,8 @@ func MakeStringdemoService() stringdemo {
 	return stringdemo{}
 }
 
-func (stringdemo) Uppercase(ctx context.Context, ucr *api.UpperCaseRequest) (api.UpperCaseResponse, error) {
-	return api.UpperCaseResponse{V: strings.ToUpper(ucr.S)}, nil
+func (stringdemo) Uppercase(ctx context.Context, ucr *api.UppercaseRequest) (api.UppercaseResponse, error) {
+	return api.UppercaseResponse{V: strings.ToUpper(ucr.S)}, nil
 }
 
 func (stringdemo) Count(ctx context.Context, cr *api.CountRequest) (api.CountResponse, error) {

@@ -8,41 +8,41 @@ import (
 
 // It is recommended that each module define its own error file
 
-func internalMakeBplusError(ctx context.Context, ll wegoe.LogLevel, e BPlusErrorCode, httpErrorCode int, args map[string]interface{}) wegoe.WeGOError {
+func internalMakeWegoError(ctx context.Context, ll wegoe.LogLevel, e WegoErrorCode, httpErrorCode int, args map[string]interface{}) wegoe.WeGOError {
 	return wegoe.MakeErrWithHTTPCode(ctx, ll, int(e), e.String(), httpErrorCode, args)
 }
 
-// MakeBplusError - returns a customized CAFUError for BPlus
-func MakeBplusError(ctx context.Context, e BPlusErrorCode, args map[string]interface{}) wegoe.WeGOError {
-	return internalMakeBplusError(ctx, wegoe.Error, e, http.StatusInternalServerError, args)
+// Error - returns a customized CAFUError for WeGO
+func Error(ctx context.Context, e WegoErrorCode, args map[string]interface{}) wegoe.WeGOError {
+	return internalMakeWegoError(ctx, wegoe.Error, e, http.StatusInternalServerError, args)
 
 }
 
-// MakeBplusWarning - returns a customized CAFUError for BPlus
-func MakeBplusWarning(ctx context.Context, e BPlusErrorCode, args map[string]interface{}) wegoe.WeGOError {
-	return internalMakeBplusError(ctx, wegoe.Warning, e, http.StatusInternalServerError, args)
+// Warning - returns a customized CAFUError for WeGO
+func Warning(ctx context.Context, e WegoErrorCode, args map[string]interface{}) wegoe.WeGOError {
+	return internalMakeWegoError(ctx, wegoe.Warning, e, http.StatusInternalServerError, args)
 }
 
-// MakeBplusErrorWithErrorCode - returns a customized CAFUError for BPlus
-func MakeBplusErrorWithErrorCode(ctx context.Context, httpErrorCode int, e BPlusErrorCode, args map[string]interface{}) wegoe.WeGOError {
-	return internalMakeBplusError(ctx, wegoe.Error, e, httpErrorCode, args)
-
-}
-
-// MakeBplusWarningWithErrorCode - returns a customized CAFUError for BPlus
-func MakeBplusWarningWithErrorCode(ctx context.Context, httpErrorCode int, e BPlusErrorCode, args map[string]interface{}) wegoe.WeGOError {
-	return internalMakeBplusError(ctx, wegoe.Warning, e, httpErrorCode, args)
+// HTTPError - returns a customized CAFUError for WeGO
+func HTTPError(ctx context.Context, httpErrorCode int, e WegoErrorCode, args map[string]interface{}) wegoe.WeGOError {
+	return internalMakeWegoError(ctx, wegoe.Error, e, httpErrorCode, args)
 
 }
 
-// BPlusErrorCode - A BPlus error code
-type BPlusErrorCode int
+// HTTPWarning - returns a customized CAFUError for WeGO
+func HTTPWarning(ctx context.Context, httpErrorCode int, e WegoErrorCode, args map[string]interface{}) wegoe.WeGOError {
+	return internalMakeWegoError(ctx, wegoe.Warning, e, httpErrorCode, args)
 
-// enumeration for B Plus Error codes
+}
+
+// WegoErrorCode - A WeGO error code
+type WegoErrorCode int
+
+// enumeration for WeGO Error codes
 const (
-	CannotInvokeOperation BPlusErrorCode = iota + 200000 // stringdemoservice.errors.CannotInvokeOperation
+	CannotInvokeOperation WegoErrorCode = iota + 200000 // stringdemoservice.errors.CannotInvokeOperation
 	SecurityException                                    // stringdemoservice.errors.SecurityException
 	CannotCastResponse                                   // stringdemoservice.errors.CannotCastResponse
 )
 
-//go:generate stringer -linecomment -type=BPlusErrorCode
+//go:generate stringer -linecomment -type=WegoErrorCode

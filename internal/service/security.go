@@ -4,16 +4,16 @@ import (
 	"context"
 	"net/http"
 
-	bplusc "github.com/agorago/wego/context"
-	bplus "github.com/agorago/wego/fw"
+	wegocontext "github.com/agorago/wego/context"
+	fw "github.com/agorago/wego/fw"
 	e "github.com/agorago/stringdemoservice/internal/err"
 )
 
 // Secure - a middleware for security
-func Secure(ctx context.Context, chain *bplus.MiddlewareChain) context.Context {
-	token, ok := bplusc.Value(ctx, "Securetoken").(string)
+func Secure(ctx context.Context, chain *fw.MiddlewareChain) context.Context {
+	token, ok := wegocontext.Value(ctx, "Securetoken").(string)
 	if !ok || (ok && token != "passpass") {
-		ctx = bplusc.SetError(ctx, e.MakeBplusErrorWithErrorCode(ctx, http.StatusForbidden, e.SecurityException,
+		ctx = wegocontext.SetError(ctx, e.HTTPError(ctx, http.StatusForbidden, e.SecurityException,
 			map[string]interface{}{}))
 		return ctx
 	}

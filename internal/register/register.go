@@ -1,9 +1,8 @@
 package register
 
 import (
-	_ "github.com/agorago/wego" // initialize BPlus first to make sure
 	fw "github.com/agorago/wego/fw"
-	// that all BPLUS modules are loaded
+	// that all WeGO modules are loaded
 	apiregister "github.com/agorago/stringdemoapi/register"
 	service "github.com/agorago/stringdemoservice/internal/service"
 )

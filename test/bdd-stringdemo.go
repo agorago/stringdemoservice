@@ -9,12 +9,12 @@ import (
 
 	"github.com/DATA-DOG/godog"
 	"github.com/agorago/stringdemoapi/api"
-	bplusc "github.com/agorago/wego/context"
-	bpluse "github.com/agorago/wego/err"
+	wegocontext "github.com/agorago/wego/context"
+	wegoe "github.com/agorago/wego/err"
 )
 
 type stringdemoTestStruct struct {
-	Ur  api.UpperCaseResponse
+	Ur  api.UppercaseResponse
 	Cr  api.CountResponse
 	Anr api.AddNumbersResponse
 	Err error
@@ -42,9 +42,9 @@ func FeatureContext(commandCatalog fw.CommandCatalog,s *godog.Suite) {
 var hts = &stringdemoTestStruct{}
 
 func (sts *stringdemoTestStruct) iInvokeUppercaseWithSecureToken(arg string, token string) error {
-	uc := api.UpperCaseRequest{S: arg}
+	uc := api.UppercaseRequest{S: arg}
 	ctx := context.TODO()
-	ctx = bplusc.Add(ctx, "SecureToken", token)
+	ctx = wegocontext.Add(ctx, "SecureToken", token)
 
 	resp, err := stringdemoProxy.Uppercase(ctx, &uc)
 	if err != nil {
@@ -56,7 +56,7 @@ func (sts *stringdemoTestStruct) iInvokeUppercaseWithSecureToken(arg string, tok
 }
 
 func (sts *stringdemoTestStruct) iInvokeUppercaseWithoutSecureToken(arg string) error {
-	uc := api.UpperCaseRequest{S: arg}
+	uc := api.UppercaseRequest{S: arg}
 	ctx := context.TODO()
 
 	_, err := stringdemoProxy.Uppercase(ctx, &uc)
@@ -68,9 +68,9 @@ func (sts *stringdemoTestStruct) iInvokeUppercaseWithoutSecureToken(arg string) 
 }
 
 func (sts *stringdemoTestStruct) iMustGetBackAnErrorWithHTTPErrorCode(arg1 int) error {
-	err, ok := sts.Err.(bpluse.WeGOError)
+	err, ok := sts.Err.(wegoe.WeGOError)
 	if !ok {
-		return fmt.Errorf("Error is not of type BplusError. it is %#v\n", err)
+		return fmt.Errorf("Error is not of type WeGOError. it is %#v\n", err)
 	}
 	if arg1 != err.HTTPErrorCode {
 		return fmt.Errorf("error codes dont match. Expected = %d.Actual = %d. Full error is %#v",

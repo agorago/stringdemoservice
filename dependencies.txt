@@ -1,2 +1,2 @@
-bplus,../bplus,gitlab.intelligentb.com/devops/bplus,false
+wego,../wego,github.com/agorago/wego,false
 stringdemoapi,../stringdemoapi,gitlab.intelligentb.com/examples/stringdemo/stringdemoapi,false

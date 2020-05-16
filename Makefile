@@ -84,7 +84,7 @@ swagger-gen-build: create-bin
 .PHONY: swagger-docs
 swagger-docs: swagger-gen-build
 	@echo "Building swagger documentation for the service"
-	internal/scripts/swagger/swagger-generate.sh
+	../togo/scripts/swagger/swagger-generate.sh
 
 ## swagger-build: Build the swagger.yaml file from the doc specification
 .PHONY: swagger-build
