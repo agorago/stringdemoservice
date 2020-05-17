@@ -1,7 +1,9 @@
 package stringdemoservice
 
 import (
+	"github.com/agorago/stringdemoapi"
 	"github.com/agorago/stringdemoservice/internal/register"
+	"github.com/agorago/stringdemoservice/internal/service"
 	"github.com/agorago/wego"
 	"github.com/agorago/wego/fw"
 )
@@ -25,6 +27,8 @@ func (stringDemoServiceInitializer)Initialize(commandCatalog fw.CommandCatalog)(
 	if err != nil {
 		return commandCatalog,err
 	}
-	register.RegisterStringdemoService(rs)
+	register.RegisterStringdemoService(rs,service.MakeStringdemoService(),
+		[]fw.Middleware {service.MakeSecure()},
+		stringdemoapi.GetProxyMiddlewares())
 	return commandCatalog,nil
 }

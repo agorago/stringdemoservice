@@ -9,8 +9,12 @@ import (
 	e "github.com/agorago/stringdemoservice/internal/err"
 )
 
+type Secure struct{}
+func MakeSecure() Secure {
+	return Secure{}
+}
 // Secure - a middleware for security
-func Secure(ctx context.Context, chain *fw.MiddlewareChain) context.Context {
+func (Secure)Intercept(ctx context.Context, chain *fw.MiddlewareChain) context.Context {
 	token, ok := wegocontext.Value(ctx, "Securetoken").(string)
 	if !ok || (ok && token != "passpass") {
 		ctx = wegocontext.SetError(ctx, e.HTTPError(ctx, http.StatusForbidden, e.SecurityException,
