@@ -1,2 +1,2 @@
 wego,../wego,github.com/agorago/wego,false
-stringdemoapi,../stringdemoapi,gitlab.intelligentb.com/examples/stringdemo/stringdemoapi,false
+stringdemoapi,../stringdemoapi,github.com/agorago/storeapi,false
